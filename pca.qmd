@@ -1,0 +1,101 @@
+---
+title: Principal Component Analysis (PCA) in Jamovi
+subtitle: Cheatsheet
+date: today
+lightbox: true
+---
+
+```{r setup}
+#| include: false
+
+if (!require("Require")) {
+    install.packages("Require")
+    require("Require")
+}
+Require(c(
+    tidyverse, gt, readxl, palmerpenguins
+))
+possums <- readxl::read_excel("possum_bw.xlsx")
+```
+
+
+::: {.grid}
+::: {.g-col-6}
+{{< include _license.qmd >}}
+
+::: {.callout-note collapse="false"}
+## Assumed knowledge
+- You have [Jamovi installed](), ideally 2.5.7.0 or later.
+- You can follow instructions to select, click and drag elements in Jamovi.
+- You already understand what ANOVA is and when to use it.
+:::
+:::
+::: {.g-col-6}
+{{< include _tidy.qmd >}}
+
+::: {.callout-warning}
+## Data
+## Download data
+We will use a crab dataset. Download it below:
+
+{{< downloadthis assets/crabs.csv dname="crabs" label="crabs.csv" type="primary" >}}
+
+:::
+:::
+:::
+
+
+## About
+
+Principal component analysis (PCA) is a technique used to reduce the dimensionality of a dataset and is also used to identify patterns in data using  a lower-dimensional space, making it easier to interpret. PCA answers questions such as:
+
+- What are the most important variables in the dataset?
+- Are there any patterns in the data?
+- Can we reduce the number of variables in the dataset and still retain most of the information?
+
+[**Interpretation of the results is not covered here.**]{style="color:red"}
+
+## Before we begin: install the snowCluster module
+
+::: callout-important
+The snowCluster module makes plotting the PCA results easier. To install it:
+
+1. Select the **Analyses** tab.
+2. Click on the **Modules** button, and select **jamovi library**.
+3. Scroll down to find or do a search for **snowCluster**.
+4. Click **INSTALL**, and wait for the installation to complete.
+5. Exit by clicking on the upper-right arrow button.
+:::
+
+
+## Import the crab data
+
+1. Click the menu icon.
+2. Select `Open` > `Browse` and select the `crab.csv` file.
+3. Click `Open`.
+
+::: panel-tabset
+## Run PCA
+
+1. In the **Analyses** tab, click on **Factor** and select **Principal Components Analysis**.
+2. Use the `Ctrl` key to select multiple variables or the `Shift` key to select a range of variables. All of these variables must be numeric.
+3. Drag the selected variables to the **Variables** box or click on the arrow button to use them in the analysis.
+4. Adjust the settings as needed:
+   a. **Method**: The method used to calculate the PCA. The default is Varimax.
+   b. **Number of components**: The number of components to display. By default, Jamovi decides using the [parallel analysis](https://en.wikipedia.org/wiki/Parallel_analysis) but you can also use the Kaiser criterion (eigenvalues > 1) or specify the number of components.
+   c. **Additional output**: useful summary tables, including a scree plot if you wish to visualise how the variance is explained by each component.
+
+![Click to enlarge. PCA analysis in Jamovi.](assets/jamovi-pca-analysis.gif)
+
+## Plot the PCA results
+
+1. In the **Analyses** tab, click on **snowCluster** and select **PCA & Group Plot**.
+2. If you have a **grouping variable** that you want to use, select the **Group Plot tab**. Otherwise, use the PCA Plot tab. Here we will use the **Group Plot tab**.
+3. Drag the same variables you used in the PCA analysis to the **Variables** box.
+4. Drag the grouping variable to the **Grouping** box. Try `sex` and `sp` to see how the groups are distributed.
+5. Check the **Individuals by groups** box to display the individual plot.
+6. Check the **PCA-Biplot** box to display the biplot of individuals and variables.
+7. Adjust the size of the plot as needed, noting that it is width x height in pixels.
+
+![Click to enlarge. PCA plotting in Jamovi.](assets/jamovi-pca-plot.gif)
+:::
