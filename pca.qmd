@@ -27,7 +27,7 @@ possums <- readxl::read_excel("possum_bw.xlsx")
 ## Assumed knowledge
 - You have [Jamovi installed](), ideally 2.5.7.0 or later.
 - You can follow instructions to select, click and drag elements in Jamovi.
-- You already understand what ANOVA is and when to use it.
+- You already understand what a **PCA** is and when to use it.
 :::
 :::
 ::: {.g-col-6}
@@ -73,6 +73,13 @@ The snowCluster module makes plotting the PCA results easier. To install it:
 1. Click the menu icon.
 2. Select `Open` > `Browse` and select the `crab.csv` file.
 3. Click `Open`.
+
+
+## PCA walkthrough
+
+:::callout-tip
+Click on the images to enlarge them.
+:::
 
 ::: panel-tabset
 ## Run PCA
